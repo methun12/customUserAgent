@@ -1,546 +1,285 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Custom User Agent Generator</title>
-
+<title></title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
 <script src="https://methun12.github.io/android/devices.js"></script>
-
 <script type="text/javascript">
-
-	var bnx;	var mxc;
-
+	var bnx;
+	var mxc;
 	function version(){
-
 		var rw= document.getElementById("andv").value;
-
 		switch(rw){
-
 			case "0":
-
 				return Math.floor(Math.random() * (12 - 10+1)) + 10;
-
 				break;
-
 			case "1":
-
 				return Math.floor(Math.random() * (12 - 11+1)) + 11;
-
 				break;
-
 			case "2":
-
 				return Math.floor(Math.random() * (12 - 9+1)) + 9;
-
 				break;
-
 			case "3":
-
 				return "9";
-
 				break;
-
 			case "4":
-
 				return "10";
-
 				break;
-
 			case "5":
-
 				return "11";
-
 				break;
-
 			case "6":
-
 				return "12";
-
 				break;
-
 			defeat:
-
 				return 0;
-
 		}
-
 		
-
 	}
-
 function change_dv(a){
-
 		var bndx= brands(parseInt(a));
-
 		var bnd;
-
 		bnx=bndx;
-
 	for(var i=1;i<15;i++){
-
 		var sl= document.getElementById("mdl");
-
 		var sl= document.getElementById("mdl");
-
 		sl.remove(sl[i]);
-
 	}
-
 		switch(bndx){
-
 		case "Samsung":
-
 		bnd=Samsung;
-
 		break;
-
 		case "Xaiomi":
-
 		bnd=Xaiomi;
-
 		break;
-
 		case "Nokia":
-
 		bnd=Nokia;
-
 		break;
-
 		case "Realme":
-
 		bnd=Realme;
-
 		break;
-
 		case "Vivo":
-
 		bnd=Vivo;
-
 		break;
-
 		case "Oppo":
-
 		bnd=Oppo;
-
 		break;
-
 		case "OnePlus":
-
 		bnd=OnePlus;
-
 		break;
-
 		default: 
-
 			break;
-
 		}
-
 	
-
 	if(a=="0"){
-
 	for(var i=1;i<15;i++){
-
 	var sl= document.getElementById("mdl");
-
 	sl.remove(sl[i]);}	
-
 	var sl= document.getElementById("mdl");
-
 	var option=document.createElement("option");
-
 	option.text="Random";
-
 	option.value="0";
-
 	sl.add(option,sl[0]); 
-
 	}
-
 	if(a!=0){
-
 		for(var i=1;i<15;i++){
-
 		var sl= document.getElementById("mdl");
-
 		sl.remove(sl[i]);}	
-
 		var sl= document.getElementById("mdl");
-
 		var option=document.createElement("option");
-
 		option.text="Random";
-
 		option.value="0";
-
 		sl.add(option,sl[0]); 
-
 	//	alert("coubt")
-
 	}
-
 	
-
 	
-
 	
-
 	for(var i=1;i<16;i++){
-
 		var sl= document.getElementById("mdl");
-
 		var option=document.createElement("option");			
-
 		option.text=bnd[replace(i)];
-
 		option.value=i;
-
 		sl.add(option,sl[i]);
-
 	
-
 	}	
-
 	/**
-
 	var sl= document.getElementById("mdl");
-
 	var option=document.createElement("option");			
-
 	option.text="Random";
-
 	option.value="0";
-
 	sl.add(option,sl[0]);**/
-
 }
-
 function rnd(max,min){
-
 	return Math.floor(Math.random() * (max - min+1)) + min;
-
 }
-
 	function getInfo(){
-
 		var bb= document.getElementById("dvs").value;
-
 		var mm= document.getElementById("mdl").value;
-
 		if(bb==0 && mm==0){
-
 			var rb=rnd(7,1);
-
 			var rm=rnd(15,1);
 
 			var re = {
-
 			"brand_info":brands(rb),
-
 			"model_info":phoneDetails(brands(rb),rm).model,
-
 			"model_code":phoneDetails(brands(rb),rm).mCode,
-
 			"android_version":version()
-
 			};
-
 		//	alert("rt1"+re.brand_info)
-
 			return re;
 
 		}
-
 		if(bb!=0 && mm==0){
-
 			var bb= document.getElementById("dvs").value;
-
 			var rm=rnd(15,1);
-
 //			alert("rt 2")
-
 			return {
-
 			"brand_info":brands(parseInt(bb)),
-
 			"model_info":phoneDetails(brands(parseInt(bb)),rm).model,
-
 			"model_code":phoneDetails(brands(parseInt(bb)),rm).mCode,
-
 			"android_version":version()
-
 			};
 
 		}
-
 				//alert("rt 3")
-
 		return {
-
 		"brand_info":brands(parseInt(bb)),
-
 		"model_info":phoneDetails(brands(parseInt(bb)),parseInt(mm)).model,
-
 		"model_code":phoneDetails(brands(parseInt(bb)),parseInt(mm)).mCode,
-
 		"android_version":version()
-
 		};
 
 	}
-
 function copyToClipboard(element) {
-
 m();
-
   var $temp = $("<input>");
-
   $("body").append($temp);
-
   $temp.val($(element).text()).select();
-
   document.execCommand("copy");
-
   $temp.remove();
-
   myTost();
-
 }
-
 function myTost() {
-
   var x = document.getElementById("snackbar");
-
   x.className = "show";
-
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1500);
-
 }
-
 	
-
 	function m(){
-
 		var info=getInfo();
-
 		var a1  = Math.floor(Math.random() * (999 - 0)) + 0;
-
 		var a2  = Math.floor(Math.random() * (100 - 0)) + 0;
-
 	//	var minfo=getInfo().model_info;
-
 		var bb= document.getElementById("phn").innerHTML=""+info.brand_info+" "+info.model_info;
-
 		var dtax = document.getElementById("agnt").innerHTML=""+"Mozilla/5.0 (Linux; Android "+info.android_version+"; "+info.model_code+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104."+"0."+a1+"."+a2+" Mobile Safari/537.36";
-
 	}
-
 </script>
-
 <style type="text/css">
-
 select{
-
 	width:100%;
-
 	margin:5px 0 22px 0;
-
 	padding:10px;
-
 	border:none;
-
 	background: #f1f1f1;
-
 }
-
 #phn{
-
 	width:90%;
-
 	margin:5px 0 22px 0;
-
 	padding:18px;
-
 	border:none;
-
 	background: #f1f1f1;
-
 }
-
 #agnt{
-
 	width:90%;
-
 	margin:5px 0 22px 0;
-
 	padding:20px;
-
 	border:none;
-
 	background: #f1f1f1;
-
 }
-
 #btn{
-
 	width:100%;
-
 	margin:5px 0 22px 0;
-
 	padding:15px;
-
 	border:;
-
 	background: #f1f1f1;
-
 }
 
 #snackbar {
-
   visibility: hidden;
-
   min-width: 250px;
-
   margin-left: -125px;
-
   background-color: #333;
-
   color: #fff;
-
   text-align: center;
-
   border-radius: 2px;
-
   padding: 16px;
-
   position: fixed;
-
   z-index: 1;
-
   left: 50%;
-
   bottom: 30px;
-
   font-size: 17px;
-
 }
 
 #snackbar.show {
-
   visibility: visible;
-
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
-
 }
 
 @-webkit-keyframes fadein {
-
   from {bottom: 0; opacity: 0;} 
-
   to {bottom: 30px; opacity: 1;}
-
 }
 
 @keyframes fadein {
-
   from {bottom: 0; opacity: 0;}
-
   to {bottom: 30px; opacity: 1;}
-
 }
 
 @-webkit-keyframes fadeout {
-
   from {bottom: 30px; opacity: 1;} 
-
   to {bottom: 0; opacity: 0;}
-
 }
 
 @keyframes fadeout {
-
   from {bottom: 30px; opacity: 1;}
-
   to {bottom: 0; opacity: 0;}
-
 }
 
 </style>
-
 </head>
-
 <body>
-
 <label for="andv">Android Version</label>
-
 	<select name="Version" id="andv">
-
 		<option value="0" >10-12 (Random)</option>
-
 		<option value="1" >11-12 (Random)</option>
-
 		<option value="2" >9-12 (Random)</option>
-
 		<option value="3" >9</option>
-
 		<option value="4" >10</option>
-
 		<option value="5" >11</option>
-
 		<option value="6" >12</option>
-
 	</select>
-
 <label for="dvs">Devices</label>
-
 	<select onchange="change_dv(this.value)" name="Devices" id="dvs" >
-
 		<option value="0" >Random</option>
-
 		<option value="1" >Samsung</option>
-
 		<option value="2" >Xaiomi</option>
-
 		<option value="3" >Nokia</option>
-
 		<option value="4" >Realme</option>
-
 		<option value="5" >Vivo</option>
-
 		<option value="6" >Oppo</option>
-
 		<option value="7" >OnePlus</option>
-
 	</select>
-
 <label for="mdl">Model</label>
-
 	<select name="Android" id="mdl" >
-
 		<option value="0" >Random</option>
-
 	</select>
-
 <label for="phn">Phone </label>
-
 	<p id="phn" >Android </p>
-
 <label for="agnt">User Agent </label>
-
 <p id="agnt" >Mozilla/5.0 (Linux; Android 12; SM-A225F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/174.0.950.72 Mobile Safari/537.36</p>
-
 <button id="btn" onclick="copyToClipboard('#agnt')">Generate & Copy</button>
-
 <div id="snackbar">Successfully Copied!</div>
-
 </body>
-
 </html>
